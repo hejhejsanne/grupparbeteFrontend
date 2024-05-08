@@ -1,16 +1,18 @@
+/* importing from the file */
 import { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
-import { SingleAuction } from "./components/SingleAuction";
-import { RegisterUser } from "./components/RegisterUser";
-import { CreateAuction } from "./components/CreateAuction";
-import { UserLogin } from "./components/UserLogin";
+import SingleAuction from "./components/SingleAuction";
+import RegisterUser from "./components/RegisterUser";
+import CreateAuction from "./components/CreateAuction";
+import UserLogin from "./components/UserLogin";
 
 function App() {
   const [count, setCount] = useState(0);
 
+  /* blir med path variable i urlen som vi gjorde i postman */
   return (
     <BrowserRouter>
       <div className="container">
