@@ -1,9 +1,10 @@
 
-
-const Register = () => {
+const RegisterUser = () => {
     return(
-         <div className="container">
-        <form onSubmit={handleSubmit}>
+         <div>
+            <h1>RgaLogo</h1>
+        <form>
+
             <div>
                 <label>Username</label>
                 <input
@@ -28,6 +29,7 @@ const Register = () => {
                 />   
             </div>
             <button type="submit">Register</button>
+            
         
         </form>
         
@@ -35,4 +37,4 @@ const Register = () => {
     );
   };
   
-  export default Register;
+  export default RegisterUser;
