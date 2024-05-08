@@ -4,7 +4,7 @@ const RegisterUser = () => {
     return(
          <div>
             <h1>RgaLogo</h1>
-        <form className="register-form">
+        <form>
 
             <div>
                 <label>Username</label>
