@@ -1,5 +1,7 @@
 import React from "react";
 
-export const SingleAuction = () => {
+const SingleAuction = () => {
   return <div>SingleAuction</div>;
 };
+
+export default SingleAuction

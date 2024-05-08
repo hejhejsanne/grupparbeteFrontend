@@ -1,14 +1,10 @@
 import React from "react";
 
-export const RegisterUser = () => {
-  return <div>RegisterUser</div>;
-};
-
 const RegisterUser = () => {
     return(
          <div>
             <h1>RgaLogo</h1>
-        <form>
+        <form className="register-form">
 
             <div>
                 <label>Username</label>
