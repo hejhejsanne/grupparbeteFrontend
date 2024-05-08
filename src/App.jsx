@@ -1,19 +1,26 @@
 import { useState } from "react";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import Profile from "./components/Profile";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
+import Profile from "./components/Profile";
+import { SingleAuction } from "./components/SingleAuction";
+import { RegisterUser } from "./components/RegisterUser";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <BrowserRouter>
-      <div>
-        <div className="container">
+      <div className="container">
         <Routes>
+          {/*path i url http://localhost:5173/ => Homepage */}
+
+          <Route path="/createauction" exact element={<CreateAuction />} />
           <Route path="/" element={<Home />} />
-          <Route path="/" exact element={<Profile />} />
+          <Route path="/login" exact element={<Login />} />
+          <Route path="/profile" exact element={<Profile />} />
+          <Route path="/registeruser" exact element={<RegisterUser />} />
+          <Route path="/singleauction" exact element={<SingleAuction />} />
         </Routes>
       </div>
     </BrowserRouter>
