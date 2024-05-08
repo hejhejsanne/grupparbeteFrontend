@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <header className="Header">
+    <header className="Header"> 
       <nav>
         <ul>
           <li>Home</li>
