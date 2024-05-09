@@ -1,5 +1,5 @@
 /* importing from the file */
-import RGAlogo from "./assets/images/RGAlogo.png";
+
 
 import { useState } from "react";
 import "./App.css";

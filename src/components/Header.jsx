@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
-// import RGAlogo from "..assets/images/RGAlogo.png";
+import RGAlogo from "../assets/images/RGAlogo.png";
+
+
 
 const Header = () => {
   console.log;
   return (
     <header className="header">
-      {/* <img src={RGAlogo} alt="" /> */}
+      { <img src={RGAlogo} alt="" /> }
       <nav>
         <ul>
           <li>

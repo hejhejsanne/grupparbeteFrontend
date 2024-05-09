@@ -8,6 +8,8 @@
     text-align: center;
   }
   .header {
+    display: flex;
+    align-items: center;
     background-color: #333;
     color: white;
     padding: 10px;
@@ -22,12 +24,13 @@
   .header nav ul li {
     display: inline; 
     margin-right: 10px; 
+    word-spacing: 5%;
   }
   
   .header nav ul li:last-child {
     margin-right: 0; 
   }
-  .logo img{
+  .header img{
     display: flex;
-    width: 2rem;
+    width: 3rem;
   }
