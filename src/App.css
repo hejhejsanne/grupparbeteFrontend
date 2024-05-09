@@ -24,3 +24,7 @@
 .Header nav ul li:last-child {
   margin-right: 0; 
 }
+.logo img{
+  display: flex;
+  width: 2rem;
+}

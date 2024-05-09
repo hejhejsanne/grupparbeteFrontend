@@ -1,7 +1,11 @@
+import RGAlogo from "./RGAlogo.png";
 const Header = () => {
+  console.log
   return (
-    <header className="Header"> 
+    <header className="Header">
+      <img src={RGAlogo} alt="" />
       <nav>
+      
         <ul>
           <li>Home</li>
           <li>RGA</li>
