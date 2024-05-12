@@ -11,7 +11,8 @@ const AuctionCardProvider = ({ children }) => {
     const fetchAuctions = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/auctions/all`
+          // `${import.meta.env.VITE_API_URL}auctions/all`
+          `http://localhost:8080/api/auction/all`
         );
         setCard(res.data);
       } catch (err) {

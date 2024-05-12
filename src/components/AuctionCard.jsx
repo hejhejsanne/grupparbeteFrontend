@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import testBild from "../assets/images/testBild.jpg";
+import { AuctionCardContext } from "../context/AuctionCardContext";
 
 const AuctionCard = ({ auction }) => {
   // const [img, setImg] = useState("");
   // const [title, setTitle] = useState("");
   // const [endDate, setEndDate] = useState("");
   // Separate state variables, ist this better to use or not?
+
+  // const { auction } = useContext(AuctionCardContext);
 
   //   singel object props
   const { image, title, endDate } = auction;
@@ -15,7 +19,7 @@ const AuctionCard = ({ auction }) => {
   };
 
   //const formatEndDate = new Date(endDate).toLocaleDateString();
-  //this can be used to format the end date for display if we dont have it allready in backend
+  // this can be used to format the end date for display if we dont have it allready in backend
   //   if this is going to be used, put {formatEndDate} insted of {endDate} in the p tag
 
   return (
