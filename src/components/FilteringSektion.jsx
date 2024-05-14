@@ -10,16 +10,20 @@ export default function FilteringSektion() {
   // useEffect för att göra API anrop
   useEffect(() => {
     const fetchFilteresGames = async () => {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/search`, {
-        value,
-        method: "GET",
-        header: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      console.log(data);
-      setGames(data);
+      if (value !== "") {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/auction/search/${value}`,
+          {
+            method: "GET",
+            header: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        console.log("DATA: " + JSON.stringify(data));
+        setGames(data);
+      }
     };
     fetchFilteresGames();
   }, [value]);
@@ -27,7 +31,7 @@ export default function FilteringSektion() {
   // en metod för att hantera onChange
   const handleChange = (e) => {
     setValue(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   return (
@@ -42,8 +46,6 @@ export default function FilteringSektion() {
         {games?.map((game) => (
           <div key={game.id}>
             <p>{game.title}</p>
-            <p>{game.description}</p>
-            <p>{game.recommendedAge}</p>
           </div>
         ))}
       </div>
