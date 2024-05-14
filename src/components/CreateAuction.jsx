@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const CreateAuction = () => {
   const [title, setTitle] = useState("");
@@ -11,7 +11,7 @@ const CreateAuction = () => {
   const [img, setImg] = useState("");
 
   const [error, setError] = useState("");
-  const history = useHistory();
+  // const history = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const CreateAuction = () => {
 
     try {
       // Sending data to backend
-      const response = await fetch("api/endpoint", {
+      const response = await fetch("api/auction", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,14 +43,14 @@ const CreateAuction = () => {
           recommendedAge,
           startPrice,
           startDate,
-          endtDate,
+          endDate,
           img,
         }),
       });
 
       if (response.ok) {
         // Redirect or handle successful response
-        history.push("/success");
+        Navigate.push("/success");
       } else {
         // Handle error response from the backend
         setError("Failed to create auction");
