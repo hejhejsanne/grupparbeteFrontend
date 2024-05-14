@@ -1,15 +1,15 @@
 // Hämtar react + categories från components
 import React, { useEffect, useState } from "react";
-import items from "./Items";
+import { items } from "./items";
 import "./style.css";
+
+// Filtervalen sparade i en array
+let filters = ["NES", "SNES", "N64", "SEGA", "GAMEBOY", "PLAYSTATION"];
 
 // Filterfunktionen
 export default function FilteringSektion() {
   const [selectedfilters, setSelectedfilters] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState(items);
-
-  // Filtervalen sparade i en array
-  let filters = ["NES", "SNES", "N64", "SEGA", "GAMEBOY", "PLAYSTATION"];
 
   const handleFilterButtonClick = (selectedCategory) => {
     if (selectedfilters.includeds(selectedCategory)) {
@@ -21,20 +21,19 @@ export default function FilteringSektion() {
   };
 
   useEffect(() => {
+    const filterItems = () => {
+      if (selectedfilters.length > 0) {
+        let tempItems = selectedfilters.map((selectedCategory) => {
+          let temp = items.filter((item) => item.category === selectedCategory);
+          return temp;
+        });
+        setFilteredCategories(tempItems.flat());
+      } else {
+        setFilteredCategories([...items]);
+      }
+    };
     filterItems();
   }, [selectedfilters]);
-
-  const filterItems = () => {
-    if (selectedfilters.length > 0) {
-      let tempItems = selectedfilters.map((selectedCategory) => {
-        let temp = items.filter((item) => item.category === selectedCategory);
-        return temp;
-      });
-      setFilteredItems(tempItems.flat());
-    } else {
-      setFilteredItems([...items]);
-    }
-  };
 
   return (
     <div>
@@ -42,7 +41,7 @@ export default function FilteringSektion() {
         {filters.map((category, idx) => (
           <button
             onClick={() => handleFilterButtonClick(category)}
-            classname={`button ${
+            className={`button ${
               selectedfilters?.includes(category) ? "active" : ""
             }`}
             key={`filters-${idx}`}
@@ -53,7 +52,7 @@ export default function FilteringSektion() {
       </div>
 
       <div className="items-container">
-        {filteredItems.map((item, idx) => (
+        {filteredCategories.map((item, idx) => (
           <div key={`items-${idx}`} className="item">
             <p>{item.name}</p>
             <p className="category"> {item.category} </p>

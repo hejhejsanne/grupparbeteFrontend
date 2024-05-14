@@ -1,6 +1,4 @@
-import React from "react";
-
-export const Items = [
+export const items = [
   {
     name: "NES",
     category: "NES",
@@ -26,4 +24,3 @@ export const Items = [
     category: "PLAYSTATION",
   },
 ];
-export default Items;
