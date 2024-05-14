@@ -3,12 +3,61 @@ import React, { useEffect, useState } from "react";
 import { items } from "./items";
 import "./style.css";
 
+export default function FilteringSektion() {
+  const [games, setGames] = useState([]);
+  const [value, setValue] = useState("");
+
+  // useEffect för att göra API anrop
+  useEffect(() => {
+    const fetchFilteresGames = async () => {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/search`, {
+        value,
+        method: "GET",
+        header: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+      setGames(data);
+    };
+    fetchFilteresGames();
+  }, [value]);
+
+  // en metod för att hantera onChange
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    console.log(e.target.value);
+  };
+
+  return (
+    <div>
+      <select name="filter" onChange={handleChange}>
+        <option defaultValue="">Filter by game console</option>
+        <option value="NES">NES</option>
+        <option value="SNES">SNES</option>
+        <option value="N64">N64</option>
+      </select>
+      <div>
+        {games?.map((game) => (
+          <div key={game.id}>
+            <p>{game.title}</p>
+            <p>{game.description}</p>
+            <p>{game.recommendedAge}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+// export default FilteringSektion;
+
+/*
 // Filtervalen sparade i en array
 let filters = ["NES", "SNES", "N64", "SEGA", "GAMEBOY", "PLAYSTATION"];
 
 // Filterfunktionen
-export default function FilteringSektion() {
-  const [selectedfilters, setSelectedfilters] = useState([]);
+ const [selectedfilters, setSelectedfilters] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState(items);
 
   const handleFilterButtonClick = (selectedCategory) => {
@@ -61,5 +110,4 @@ export default function FilteringSektion() {
       </div>
     </div>
   );
-}
-// export default FilteringSektion;
+*/
