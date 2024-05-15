@@ -50,8 +50,9 @@ const CreateAuction = () => {
       });
 
       if (response.ok) {
+        const {id} = await response.json;
         // Redirect or handle successful response
-        navigate("/success");
+        navigate("/auction/${id}");
       } else {
         // Handle error response from the backend
         setError("Failed to create auction");
