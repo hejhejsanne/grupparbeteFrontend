@@ -50,3 +50,34 @@
 .auction-btn:hover {
   background-color: #45a049;
 }
+.form-container {
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form-container label {
+  font-weight: bold;
+}
+
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.form-container button:hover {
+  background-color: #45a049;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 15px;
+}

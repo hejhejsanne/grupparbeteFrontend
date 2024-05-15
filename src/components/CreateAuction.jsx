@@ -63,7 +63,7 @@ const CreateAuction = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="form-container" onSubmit={handleSubmit}>
       <div>
         <label>Title:</label>
         <input
@@ -119,11 +119,7 @@ const CreateAuction = () => {
       </div>
       <div>
         <label>Image:</label>
-        <input
-          type="text"
-          onChange={(e) => setImg(e.target.value)}
-          required
-        />
+        <input type="text" onChange={(e) => setImg(e.target.value)} required />
       </div>
       {error && <div>{error}</div>}
       <button className="auction-btn" type="submit">
