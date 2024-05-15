@@ -41,11 +41,23 @@ export default function FilteringSektion() {
         <option value="NES">NES</option>
         <option value="SNES">SNES</option>
         <option value="N64">N64</option>
+        <option value="SEGA">SEGA</option>
+        <option value="GAMEBOY">SEGA</option>
+        <option value="PLAYSTATION">PLAYSTATION</option>
       </select>
       <div>
         {games?.map((game) => (
           <div key={game.id}>
+            <p>{game.image}</p>
             <p>{game.title}</p>
+            <p>{game.description}</p>
+            <p>{game.recommendedAge}</p>
+            <p>{game.category}</p>
+            <p>{game.startPrice}</p>
+            <p>{game.startDate}</p>
+            <p>{game.endDate}</p>
+            <p>{game.tags}</p>
+            <p>{game.seller}</p>
           </div>
         ))}
       </div>
