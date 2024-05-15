@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CreateAuction = () => {
   const [title, setTitle] = useState("");
@@ -9,6 +9,7 @@ const CreateAuction = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [img, setImg] = useState("");
+  const navigate = useNavigate();
 
   const [error, setError] = useState("");
   // const history = useNavigate();
@@ -32,7 +33,7 @@ const CreateAuction = () => {
 
     try {
       // Sending data to backend
-      const response = await fetch("api/auction", {
+      const response = await fetch("http://localhost:8080/api/auction/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,7 +51,7 @@ const CreateAuction = () => {
 
       if (response.ok) {
         // Redirect or handle successful response
-        Navigate.push("/success");
+        navigate("/success");
       } else {
         // Handle error response from the backend
         setError("Failed to create auction");
@@ -119,14 +120,15 @@ const CreateAuction = () => {
       <div>
         <label>Image:</label>
         <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setImage(e.target.files[0])}
+          type="text"
+          onChange={(e) => setImg(e.target.value)}
           required
         />
       </div>
       {error && <div>{error}</div>}
-      <button type="submit">Create Auction</button>
+      <button className="auction-btn" type="submit">
+        Create Auction
+      </button>
     </form>
   );
 };
