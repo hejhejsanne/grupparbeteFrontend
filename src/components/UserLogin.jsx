@@ -68,9 +68,7 @@ const UserLogin = () => {
         {
           username,
           password,
-        },
-
-        { withCredentials: true }
+        }
       );
 
       dispatch({
