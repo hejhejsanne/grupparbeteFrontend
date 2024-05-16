@@ -2,35 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 #root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-  }
-  .header {
-    display: flex;
-    align-items: center;
-    background-color: #333;
-    color: white;
-    padding: 10px;
-  }
-  
-  .header nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .header nav ul li {
-    display: inline; 
-    margin-right: 10px; 
-    word-spacing: 5%;
-  }
-  
-  .header nav ul li:last-child {
-    margin-right: 0; 
-  }
-  .header img{
-    display: flex;
-    width: 3rem;
-  }
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+.header nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header nav ul li {
+  display: inline;
+  margin-right: 10px;
+  word-spacing: 5%;
+}
+
+.header nav ul li:last-child {
+  margin-right: 0;
+}
+.header img {
+  display: flex;
+  width: 3rem;
+}
+.auction-btn {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.auction-btn:hover {
+  background-color: #45a049;
+}
+.form-container {
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form-container label {
+  font-weight: bold;
+}
+
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.form-container button:hover {
+  background-color: #45a049;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 15px;
+}
