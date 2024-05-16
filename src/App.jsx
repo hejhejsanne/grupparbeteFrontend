@@ -1,4 +1,5 @@
 /* importing from the file */
+
 import { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -9,6 +10,7 @@ import SingleAuction from "./components/SingleAuction";
 import RegisterUser from "./components/RegisterUser";
 import CreateAuction from "./components/CreateAuction";
 import UserLogin from "./components/UserLogin";
+import Header from "./components/Header";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -17,6 +19,9 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <div>
+          <Header />
+        </div>
         <div className="container">
           <Routes>
             <Route path="/createauction" exact element={<CreateAuction />} />

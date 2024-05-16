@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import Logo from "Logo";
+import RGAlogo from "../assets/images/RGAlogo.png";
 
 const Header = () => {
+  console.log;
   return (
     <header className="header">
-      <div>
-        <Logo />
-      </div>
+      {<img src={RGAlogo} alt="" />}
       <nav>
         <ul>
           <li>
@@ -16,12 +15,23 @@ const Header = () => {
           </li>
 
           <li>
-            <Link className="links">About</Link>
+            <Link className="links" to="/createauction">
+              Create Auction
+            </Link>
+          </li>
+          <li>
+            <Link className="links" to="/registeruser">
+              Register
+            </Link>
+          </li>
+          <li>
+            <Link className="links" to="/userlogin">
+              Log in
+            </Link>
           </li>
         </ul>
       </nav>
     </header>
   );
 };
-
 export default Header;
