@@ -33,7 +33,7 @@ const RegisterUser = () => {
             });
 
             if (response.ok){
-                navigate("/registeruser")
+                navigate("/userlogin")
             } else {
                 setError("Signup failed")
             } 
