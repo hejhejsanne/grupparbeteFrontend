@@ -47,14 +47,19 @@ const UserLogin = () => {
     setUsernameError("");
     setPasswordError("");
 
-    if (username === "") {
-      setUsernameError("Username is required");
-      setHasErrors(true);
-    }
+    // if (username === "") {
+    //   setUsernameError("Username is required");
+    //   setHasErrors(true);
+    // }
 
-    if (password === "") {
-      setPasswordError("Password is required");
-      setHasErrors(true);
+    // if (password === "") {
+    //   setPasswordError("Password is required");
+    //   setHasErrors(true);
+    // }
+
+    if (!username || !password) {
+      alert("Fill in username and password!");
+      return;
     }
 
     try {
@@ -63,7 +68,9 @@ const UserLogin = () => {
         {
           username,
           password,
-        }
+        },
+
+        { withCredentials: true }
       );
 
       dispatch({

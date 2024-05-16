@@ -2,7 +2,7 @@
 import { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AuthProvider } from ".context/AuthContext";
+import { AuthProvider } from "./context/AuthContext";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import SingleAuction from "./components/SingleAuction";
