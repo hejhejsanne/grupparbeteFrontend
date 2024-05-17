@@ -21,7 +21,10 @@
 // };
 // export default UserLogin;
 
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
 
 const UserLogin = () => {
   const [username, setUsername] = useState("");
@@ -30,8 +33,15 @@ const UserLogin = () => {
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handleLogin = (event) => {
-    event.preventDefault(); // Förhindrar standardsubmit beteende
+  const navigate = useNavigate();
+
+  const {
+    state: { user },
+    dispatch,
+  } = useContext(AuthContext);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Förhindrar standardsubmit beteende
 
     setHasErrors(false); // Återställ fel vid varje submitförsök
     setUsernameError("");
@@ -47,21 +57,48 @@ const UserLogin = () => {
       setHasErrors(true);
     }
 
-    if (!hasErrors) {
-      // Validering lyckades, simulera inloggning
-      console.log(
-        "Trying to login with username:",
-        username,
-        "password:",
-        password
+    // if (!username || !password) {
+    //   alert("Fill in username and password!");
+    //   return;
+    // }
+
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/signin`,
+        {
+          username,
+          password,
+        }
       );
+
+      dispatch({
+        type: "LOGIN",
+        payload: data,
+      });
+
+      window.localStorage.setItem("user", JSON.stringify(data));
+      console.log("User logged in");
+
+      return navigate("/");
+    } catch (err) {
+      console.log("Error: " + err);
     }
+
+    // if (!hasErrors) {
+    //   // Validering lyckades, simulera inloggning
+    //   console.log(
+    //     "Trying to login with username:",
+    //     username,
+    //     "password:",
+    //     password
+    //   );
+    // }
   };
 
   return (
     <div>
       <h1>RgaLogo</h1>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleSubmit}>
         <div className={usernameError ? "error" : ""}>
           <label>Username</label>
           <input
