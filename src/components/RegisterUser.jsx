@@ -33,6 +33,7 @@ const RegisterUser = () => {
             });
 
             if (response.ok){
+                console.log("User created")
                 navigate("/userlogin")
             } else {
                 setError("Signup failed")
