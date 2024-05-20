@@ -106,3 +106,18 @@ ul {
   list-style: none;
   padding: 0;
 }
+.auction-list {
+  display: flex; /* Make the container a flexbox */
+  flex-wrap: wrap; /* Wrap cards to multiple rows if needed */
+  justify-content: space-around; /* Distribute cards evenly with some spacing */
+}
+
+.auction-cards-container {
+  display: flex; /* Inherit and ensure flexbox for cards */
+}
+
+.auction-card { /* Style each auction card here */
+
+}
+
+
