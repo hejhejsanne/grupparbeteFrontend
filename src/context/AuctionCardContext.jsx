@@ -10,7 +10,9 @@ const AuctionCardProvider = ({ children }) => {
   useEffect(() => {
     const fetchAuctions = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/all`);
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/auction/all`
+        );
         setCard(res.data);
       } catch (err) {
         console.log("Error: " + err);
