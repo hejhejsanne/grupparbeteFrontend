@@ -25,6 +25,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const UserLogin = () => {
   const [username, setUsername] = useState("");
@@ -120,7 +121,16 @@ const UserLogin = () => {
           {passwordError && <p className="error-message">{passwordError}</p>}
         </div>
         <button type="submit">Log in</button>
-        <p>Forgot your username or password?</p>
+        <nav>
+          <ul>
+            <li>
+              <Link className="links" to="/">
+                Forgot your username or password?
+              </Link>
+            </li>
+          </ul>
+        </nav>
+        {/* <p>Forgot your username or password?</p> */}
       </form>
     </div>
   );
