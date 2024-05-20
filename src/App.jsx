@@ -11,6 +11,7 @@ import RegisterUser from "./components/RegisterUser";
 import CreateAuction from "./components/CreateAuction";
 import UserLogin from "./components/UserLogin";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -31,6 +32,9 @@ function App() {
             <Route path="/registeruser" exact element={<RegisterUser />} />
             <Route path="/singleauction" exact element={<SingleAuction />} />
           </Routes>
+        </div>
+        <div className="footer">
+          <Footer />
         </div>
       </BrowserRouter>
     </AuthProvider>

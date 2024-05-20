@@ -10,7 +10,7 @@
 .header {
   display: flex;
   align-items: center;
-  background-color: #333;
+  background-color: #582256;
   color: white;
   padding: 10px;
 }
@@ -80,4 +80,29 @@
 .error-message {
   color: red;
   margin-bottom: 15px;
+}
+
+.footer {
+  display: flex; /* Aktivera Flexbox */
+  align-items: center; /* Centrera vertikalt */
+  justify-content: center; /* Centrera horisontellt */
+  background-color: #582256; /* Färg */
+  color: white; /* Textfärg */
+  padding-bottom: 8px; /* Fyllning */
+  position: fixed; /* Fixerad position */
+  width: 80%; /* Bredd */
+  bottom: 0; /* Bottenposition */
+  left: 0; /* Vänsterposition */
+  margin-left: 145px; /* Centrera automatiskt */
+  margin-bottom: 10px;
+}
+
+li {
+  display: inline-block;
+  margin: 0.5rem;
+}
+ul {
+  margin: 0;
+  list-style: none;
+  padding: 0;
 }
