@@ -68,6 +68,15 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.auction-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.auction-cards-container {
+  display: flex;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

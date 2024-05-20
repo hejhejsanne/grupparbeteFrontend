@@ -1,4 +1,3 @@
-/* importing from the file */
 import { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -12,32 +11,29 @@ import AuctionCard from "./components/AuctionCard";
 
 function App() {
   const [count, setCount] = useState(0);
-  const AuctionCard = ({ auction }) => {
-    const { picture, endDate, highestBid } = auction;
 
-    /* blir med path variable i urlen som vi gjorde i postman */
-    return (
-      <BrowserRouter>
-        <div className="container">
-          <Routes>
-            <Route path="/createauction" exact element={<CreateAuction />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/userlogin" exact element={<UserLogin />} />
-            <Route path="/profile" exact element={<Profile />} />
-            <Route path="/registeruser" exact element={<RegisterUser />} />
-            <Route path="/singleauction" exact element={<SingleAuction />} />
-          </Routes>
-          <div className="auction-card">
-            <img src={picture} alt="Auction" />
-            <div>
-              <p>End Date: {endDate}</p>
-              <p>Highest Bid: {highestBid}</p>
-            </div>
+  return (
+    <BrowserRouter>
+      <div className="container">
+        <Routes>
+          <Route path="/createauction" exact element={<CreateAuction />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/userlogin" exact element={<UserLogin />} />
+          <Route path="/profile" exact element={<Profile />} />
+          <Route path="/registeruser" exact element={<RegisterUser />} />
+          <Route path="/singleauction" exact element={<SingleAuction />} />
+        </Routes>
+        <div className="auction-card">
+          <div className="auction-cards-container">
+            {/* Container for flexbox */}
+            {auctions.map((auction) => (
+              <AuctionCard key={auction.id} auction={auction} />
+            ))}
           </div>
         </div>
-      </BrowserRouter>
-    );
-  };
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;
