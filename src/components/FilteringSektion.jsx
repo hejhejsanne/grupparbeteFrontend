@@ -1,6 +1,4 @@
-// Hämtar react + categories från components
-import React, { useEffect, useState } from "react";
-import { items } from "./items";
+import { useEffect, useState } from "react";
 import "./style.css";
 
 export default function FilteringSektion() {
@@ -9,44 +7,53 @@ export default function FilteringSektion() {
 
   // useEffect för att göra API anrop
   useEffect(() => {
-    const fetchFilteresGames = async () => {
+    const fetchFilteredGames = async () => {
       if (value !== "") {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/auction/search/${value}`,
-          {
+        const url = `${import.meta.env.VITE_API_URL}/auction/search/${value}`;
+        console.log("Fetching URL: ", url);
+        try {
+          const response = await fetch(url, {
             method: "GET",
-            header: {
+            headers: {
               "Content-Type": "application/json",
             },
+          });
+          if (response.ok) {
+            const data = await response.json();
+            console.log("DATA: ", data);
+            setGames(data);
+          } else {
+            console.error("Error fetching data: ", response.statusText);
           }
-        );
-        const data = await response.json();
-        console.log("DATA: " + JSON.stringify(data));
-        setGames(data);
+        } catch (error) {
+          console.error("Error fetching data: ", error);
+        }
       }
     };
-    fetchFilteresGames();
+
+    fetchFilteredGames();
   }, [value]);
 
   // en metod för att hantera onChange
   const handleChange = (e) => {
     setValue(e.target.value);
-    // console.log(e.target.value);
   };
 
   return (
     <div>
-      <select name="filter" onChange={handleChange}>
-        <option defaultValue="">Filter by game console</option>
+      <select name="filter" onChange={handleChange} defaultValue="">
+        <option value="" disabled>
+          Filter by game console
+        </option>
         <option value="NES">NES</option>
         <option value="SNES">SNES</option>
         {/* <option value="N64">N64</option>
         <option value="SEGA">SEGA</option>
-        <option value="GAMEBOY">SEGA</option>
+        <option value="GAMEBOY">GAMEBOY</option>
         <option value="PLAYSTATION">PLAYSTATION</option> */}
       </select>
       <div>
-        {games?.map((game) => (
+        {games.map((game) => (
           <div key={game.id}>
             <p>{game.image}</p>
             <p>{game.title}</p>
@@ -64,64 +71,3 @@ export default function FilteringSektion() {
     </div>
   );
 }
-// export default FilteringSektion;
-
-/*
-// Filtervalen sparade i en array
-let filters = ["NES", "SNES", "N64", "SEGA", "GAMEBOY", "PLAYSTATION"];
-
-// Filterfunktionen
- const [selectedfilters, setSelectedfilters] = useState([]);
-  const [filteredCategories, setFilteredCategories] = useState(items);
-
-  const handleFilterButtonClick = (selectedCategory) => {
-    if (selectedfilters.includeds(selectedCategory)) {
-      let filters = selectedfilters.filter((el) => el !== selectedCategory);
-      setSelectedfilters(filters);
-    } else {
-      setSelectedfilters([...selectedfilters, selectedCategory]);
-    }
-  };
-
-  useEffect(() => {
-    const filterItems = () => {
-      if (selectedfilters.length > 0) {
-        let tempItems = selectedfilters.map((selectedCategory) => {
-          let temp = items.filter((item) => item.category === selectedCategory);
-          return temp;
-        });
-        setFilteredCategories(tempItems.flat());
-      } else {
-        setFilteredCategories([...items]);
-      }
-    };
-    filterItems();
-  }, [selectedfilters]);
-
-  return (
-    <div>
-      <div className="buttons-container">
-        {filters.map((category, idx) => (
-          <button
-            onClick={() => handleFilterButtonClick(category)}
-            className={`button ${
-              selectedfilters?.includes(category) ? "active" : ""
-            }`}
-            key={`filters-${idx}`}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-
-      <div className="items-container">
-        {filteredCategories.map((item, idx) => (
-          <div key={`items-${idx}`} className="item">
-            <p>{item.name}</p>
-            <p className="category"> {item.category} </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-*/
