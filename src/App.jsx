@@ -12,6 +12,7 @@ import CreateAuction from "./components/CreateAuction";
 import UserLogin from "./components/UserLogin";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import FilteringSektion from "./components/FilteringSektion";
 
 function App() {
   /* blir med path variable i urlen som vi gjorde i postman */

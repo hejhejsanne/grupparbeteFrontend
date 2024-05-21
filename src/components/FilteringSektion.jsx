@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./style.css";
 
-export default function FilteringSektion() {
+function FilteringSektion() {
   const [games, setGames] = useState([]);
   const [value, setValue] = useState("");
 
@@ -71,3 +71,4 @@ export default function FilteringSektion() {
     </div>
   );
 }
+export default FilteringSektion;
