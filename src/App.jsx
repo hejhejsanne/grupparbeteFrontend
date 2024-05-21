@@ -12,42 +12,33 @@ import CreateAuction from "./components/CreateAuction";
 import UserLogin from "./components/UserLogin";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import AuctionCard from "./components/AuctionCard";
-import AuctionList from "./components/AuctionCardList";
-import AuctionCardList from "./components/AuctionCardList";
-import {
-  AuctionCardContext,
-  AuctionCardProvider,
-} from "./context/AuctionCardContext";
+import FilteringSektion from "./components/FilteringSektion";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   /* blir med path variable i urlen som vi gjorde i postman */
   return (
     <AuthProvider>
-      <AuctionCardProvider>
-        <BrowserRouter>
-          <div>
-            <Header />
-          </div>
-          <div className="container">
-            <Routes>
-              <Route path="/createauction" exact element={<CreateAuction />} />
-              <Route path="/" element={<Home />} />
-              <Route path="/userlogin" exact element={<UserLogin />} />
-              <Route path="/profile" exact element={<Profile />} />
-              <Route path="/registeruser" exact element={<RegisterUser />} />
-              <Route path="/singleauction" exact element={<SingleAuction />} />
-            </Routes>
-          </div>
-          <div className="footer">
-            <Footer />
-          </div>
-        </BrowserRouter>
-      </AuctionCardProvider>
+      <BrowserRouter>
+        <div>
+          <Header />
+        </div>
+        <div className="container">
+          <Routes>
+            <Route path="/createauction" exact element={<CreateAuction />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/userlogin" exact element={<UserLogin />} />
+            <Route path="/profile" exact element={<Profile />} />
+            <Route path="/registeruser" exact element={<RegisterUser />} />
+            <Route path="/singleauction" exact element={<SingleAuction />} />
+          </Routes>
+        </div>
+        <div className="footer">
+          <Footer />
+        </div>
+      </BrowserRouter>
     </AuthProvider>
   );
 }
 
 export default App;
+

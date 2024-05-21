@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import "./style.css";
-import FilteringSektion from "./FilteringSektion";
 
-const Home = () => {
+export default function FilteringSektion() {
   const [games, setGames] = useState([]);
   const [value, setValue] = useState("");
 
@@ -42,37 +41,33 @@ const Home = () => {
 
   return (
     <div>
+      <select name="filter" onChange={handleChange} defaultValue="">
+        <option value="" disabled>
+          Filter by game console
+        </option>
+        <option value="NES">NES</option>
+        <option value="SNES">SNES</option>
+        <option value="N64">N64</option>
+        <option value="SEGA">SEGA</option>
+        <option value="GAMEBOY">GAMEBOY</option>
+        <option value="PLAYSTATION">PLAYSTATION</option>
+      </select>
       <div>
-        <select name="filter" onChange={handleChange} defaultValue="">
-          <option value="" disabled>
-            Filter by game console
-          </option>
-          <option value="NES">NES</option>
-          <option value="SNES">SNES</option>
-          <option value="N64">N64</option>
-          <option value="SEGA">SEGA</option>
-          <option value="GAMEBOY">GAMEBOY</option>
-          <option value="PLAYSTATION">PLAYSTATION</option>
-        </select>
-        <div>
-          {games.map((game) => (
-            <div key={game.id}>
-              <p>{game.image}</p>
-              <p>{game.title}</p>
-              <p>{game.description}</p>
-              <p>{game.recommendedAge}</p>
-              <p>{game.category}</p>
-              <p>{game.startPrice}</p>
-              <p>{game.startDate}</p>
-              <p>{game.endDate}</p>
-              <p>{game.tags}</p>
-              {/* <p>{game.seller}</p> */}
-            </div>
-          ))}
-        </div>
+        {games.map((game) => (
+          <div key={game.id}>
+            <p>{game.image}</p>
+            <p>{game.title}</p>
+            <p>{game.description}</p>
+            <p>{game.recommendedAge}</p>
+            <p>{game.category}</p>
+            <p>{game.startPrice}</p>
+            <p>{game.startDate}</p>
+            <p>{game.endDate}</p>
+            <p>{game.tags}</p>
+            {/* <p>{game.seller}</p> */}
+          </div>
+        ))}
       </div>
     </div>
   );
-};
-
-export default Home;
+}
