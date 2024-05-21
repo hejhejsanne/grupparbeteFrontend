@@ -1,4 +1,4 @@
-import { FilteringSektion } from "./FilteringSektion";
+import FilteringSektion from "./FilteringSektion";
 
 const Home = () => {
   return (
