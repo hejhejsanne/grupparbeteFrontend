@@ -8,6 +8,33 @@ const AuctionCard = ({ auction }) => {
 
   // Format ending time for display
   const formattedEndingTime = formatTime(endingTime); // Implement formatTime function
+  function formatTime(endingTime) {
+    const currentTime = new Date().getTime(); // Current time in milliseconds
+    const timeDifference = endingTime - currentTime; // Time difference in milliseconds
+
+    // Convert time difference to days, hours, and minutes
+    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor(
+      (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+    );
+
+    // Construct the formatted string
+    let formattedTimeString = "";
+    if (days > 0) {
+      formattedTimeString += `${days} day${days > 1 ? "s" : ""} `;
+    }
+    if (hours > 0) {
+      formattedTimeString += `${hours} hour${hours > 1 ? "s" : ""} `;
+    }
+    if (minutes > 0) {
+      formattedTimeString += `${minutes} minute${minutes > 1 ? "s" : ""} `;
+    }
+
+    return formattedTimeString.trim();
+  }
 
   return (
     <Link to={`/auction/${id}`}>
@@ -28,49 +55,5 @@ const AuctionCard = ({ auction }) => {
     </Link>
   );
 };
-
-function App() {
-  const [count, setCount] = useState(0);
-  const [auctions, setAuctions] = useState([]);
-  useEffect(() => {
-    // Fetch data and update auctions state
-    fetch("/auth/auction")
-      .then((response) => response.json())
-      .then((data) => setAuctions(data));
-  }, []);
-
-  return (
-    <div className="auction-cards-container">
-      {auctions.map((auction) => (
-        <AuctionCard key={auction.id} auction={auction} />
-      ))}
-    </div>
-  );
-}
-function formatTime(endingTime) {
-  const currentTime = new Date().getTime(); // Current time in milliseconds
-  const timeDifference = endingTime - currentTime; // Time difference in milliseconds
-
-  // Convert time difference to days, hours, and minutes
-  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
-  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-
-  // Construct the formatted string
-  let formattedTimeString = "";
-  if (days > 0) {
-    formattedTimeString += `${days} day${days > 1 ? "s" : ""} `;
-  }
-  if (hours > 0) {
-    formattedTimeString += `${hours} hour${hours > 1 ? "s" : ""} `;
-  }
-  if (minutes > 0) {
-    formattedTimeString += `${minutes} minute${minutes > 1 ? "s" : ""} `;
-  }
-
-  return formattedTimeString.trim();
-}
 
 export default AuctionCard;
