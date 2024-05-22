@@ -37,9 +37,9 @@ const AuctionCard = ({ auction }) => {
   }
 
   return (
-    <Link to={`/auction/${id}`}>
+    <Link to={`/SingleAuction`}>
       {" "}
-      {/* Link to single auction page */}
+      {<SingleAuction />}
       <div className="auction-card">
         <img src={image} alt={title} className="auction-image" />
         <div className="auction-details">
