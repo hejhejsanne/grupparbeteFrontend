@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./style.css";
 import FilteringSektion from "./FilteringSektion";
+import AuctionCard from "./AuctionCard";
 
 const Home = () => {
   const [games, setGames] = useState([]);
@@ -73,6 +74,8 @@ const Home = () => {
       </div>
     </div>
   );
+
+  <div>{<AuctionCard />}</div>;
 };
 
 export default Home;

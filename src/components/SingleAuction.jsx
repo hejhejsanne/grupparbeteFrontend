@@ -4,4 +4,4 @@ const SingleAuction = () => {
   return <div>SingleAuction</div>;
 };
 
-export default SingleAuction
+export default SingleAuction;
