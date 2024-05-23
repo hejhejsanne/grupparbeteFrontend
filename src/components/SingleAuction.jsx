@@ -5,6 +5,7 @@ import axios from "axios";
 const SingleAuction = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [auction, setAuction] = useState({});
+  const [bidAmount, setBidAmount] = useState(0)
 
   const { id } = useParams();
 
@@ -22,7 +23,12 @@ const SingleAuction = () => {
     event.preventDefault();
     const bidAmount = parseFloat(event.target.bid.value);
 
-    if (bidAmount <= currentBid) {
+    if (bidAmount <= 0) {
+      setErrorMessage("Bid amount must be greater than zero.");
+      return;
+    }
+
+    if (bidAmount <= auction.bidsAmount) {
       setErrorMessage("Bid amount must be greater than current bid.");
       return;
     }
@@ -51,6 +57,18 @@ const SingleAuction = () => {
         <div>
           <h2>{auction.title}</h2>
           <p>{auction.description}</p>
+          <form onSubmit={handleBidSubmit}>
+            <label htmlFor="bid">Enter your bid amount:</label>
+            <input
+              type="number"
+              id="bid"
+              name="bid"
+              value={bidAmount} 
+              onChange={(e) => setBidAmount(parseFloat(e.target.value))} 
+            />
+            <button type="submit">Place Bid</button>
+          </form>
+          {errorMessage && <p className="error-message">{errorMessage}</p>} {}
         </div>
       )}
     </div>
