@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import FilteringSektion from "./FilteringSektion"; // Assuming this component handles filtering logic
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import AuctionCard from "./AuctionCard";
 
 const Home = ({ auction }) => {
   const [games, setGames] = useState([]);
@@ -11,7 +12,7 @@ const Home = ({ auction }) => {
   const navigate = useNavigate(); // Assuming you have useNavigate imported
 
   // useEffect for API calls
-  useEffect(() => {
+  /* useEffect(() => {
     const fetchFilteredGames = async () => {
       if (value !== "") {
         const url = `${import.meta.env.VITE_API_URL}/auction/search/${value}`;
@@ -34,7 +35,7 @@ const Home = ({ auction }) => {
     };
 
     fetchFilteredGames();
-  }, [value]);
+  }, [value]); */
 
   useEffect(() => {
     const fetchAuctionDetails = async () => {
@@ -96,32 +97,35 @@ const Home = ({ auction }) => {
               </div>
             ))}
           </div>
-          <div className="auction-card">
-            {auctions && ( // Check if auction data exists
-              <>
-                <img src={auction.imageUrl} alt={auction.title} />
-                <h3>{auction.title}</h3>
-                <p>{auction.description}</p>
-                <button onClick={handleCardClick} disabled={isSelected}>
-                  {isSelected ? "Selected" : "View Details"}
-                </button>
-                {/* Conditionally render additional auction details */}
-                {isSelected && (
-                  <div>
-                    <p>{auction.title}</p>
-                    {/* ... other details ... */}
-                  </div>
-                )}
-              </>
-            )}
-          </div>
         </div>
+        {auctions.map((auction) => (
+          <AuctionCard key={auction.id} auction={auction} />
+        ))}
       </div>
     );
   };
 };
 
 export default Home;
+
+/* <div className="auction-card">
+{auctions && ( // Check if auction data exists
+  <>
+    <img src={auction.imageUrl} alt={auction.title} />
+    <h3>{auction.title}</h3>
+    <p>{auction.description}</p>
+    <button onClick={handleCardClick} disabled={isSelected}>
+      {isSelected ? "Selected" : "View Details"}
+    </button>
+  
+    {isSelected && (
+      <div>
+        <p>{auction.title}</p>
+      </div>
+    )}
+  </>
+)}
+</div> */
 
 // import { useEffect, useState } from "react";
 // import "./style.css";

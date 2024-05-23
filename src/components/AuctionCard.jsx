@@ -4,13 +4,14 @@ import AuctionCardList from "./AuctionCardList";
 
 const AuctionCard = ({ auction }) => {
   // Destructure relevant auction data
-  const { id, title, image, currentBid, endingTime } = auction;
+  // const { id, title, image, currentBid, endingTime } = auction;
 
   // Format ending time for display
-  const formattedEndingTime = formatTime(endingTime); // Implement formatTime function
+  // endDate kanske inte funkar skit i det i så fall och förklara
+  const formattedEndingTime = formatTime(auction.endDate); // Implement formatTime function
   function formatTime(endingTime) {
     const currentTime = new Date().getTime(); // Current time in milliseconds
-    const timeDifference = endingTime - currentTime; // Time difference in milliseconds
+    const timeDifference = auction.endDate - currentTime; // Time difference in milliseconds
 
     // Convert time difference to days, hours, and minutes
     const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
@@ -38,13 +39,16 @@ const AuctionCard = ({ auction }) => {
 
   return (
     <Link to={`/auction/${id}`}>
-      {" "}
       {/* Link to single auction page */}
       <div className="auction-card">
-        <img src={image} alt={title} className="auction-image" />
+        <img
+          src={auction.image}
+          alt={auction.title}
+          className="auction-image"
+        />
         <div className="auction-details">
-          <h3 className="auction-title">{title}</h3>
-          <p className="current-bid">Current Bid: ${currentBid}</p>
+          <h3 className="auction-title">{auction.title}</h3>
+          <p className="current-bid">Current Bid: ${auction.currentBid}</p>
           <p className="ending-time">
             {formattedEndingTime
               ? `Ending: ${formattedEndingTime}`
