@@ -36,9 +36,9 @@
   width: 3rem;
 }
 .auction-btn {
-  background-color: #4caf50;
+  background-color: #8e3d7e;
   border: none;
-  color: white;
+  color: black;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -49,7 +49,7 @@
   transition: background-color 0.3s;
 }
 .auction-btn:hover {
-  background-color: #45a049;
+  background-color: #91c3c2;
 }
 .form-container {
   width: 50%;
@@ -58,17 +58,19 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f6f6f6;
+  margin-top: 45px;
 }
 
 .form-container label {
   font-weight: bold;
-  color: #45a049;
+  color: #752d5c;
 }
-.form-container input,
+
+/* .form-container input,
 textarea {
   font-weight: 200;
   background-color: #45a049;
-}
+} */
 
 .form-container input,
 .form-container textarea {
@@ -81,7 +83,7 @@ textarea {
 }
 
 .form-container button:hover {
-  background-color: #45a049;
+  background-color: #91c3c2;
 }
 
 .error-message {
@@ -90,11 +92,11 @@ textarea {
 }
 
 .footer {
-  display: flex; /* Aktivera Flexbox */
-  align-items: center; /* Centrera vertikalt */
-  justify-content: center; /* Centrera horisontellt */
-  background-color: #582256; /* Färg */
-  color: white; /* Textfärg */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #582256;
+  color: white;
   padding-bottom: 8px; /* Fyllning */
   position: fixed; /* Fixerad position */
   width: 80%; /* Bredd */
@@ -103,6 +105,18 @@ textarea {
   margin-left: 145px; /* Centrera automatiskt */
   margin-bottom: 10px;
 }
+
+/* footer {
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  background-color: #582256; 
+  color: white; 
+  padding-bottom: 8px; 
+  position: absolute;
+  width: 64%;
+  margin: 0 auto;
+} */
 
 li {
   display: inline-block;
@@ -125,4 +139,20 @@ ul {
 
 .auction-card {
   /* Style each auction card here */
+}
+
+.flex-box {
+  display: flex;
+  justify-content: center;
+}
+
+.registerUser,
+.loginUser {
+  color: #f6f6f6;
+}
+
+.registerUser input,
+.loginUser input {
+  margin-left: 10px;
+  justify-content: center;
 }
