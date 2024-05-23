@@ -13,6 +13,10 @@ import UserLogin from "./components/UserLogin";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FilteringSektion from "./components/FilteringSektion";
+import Contact from "./components/Contact";
+import Gdpr from "./components/Gdppr";
+import Faq from "./components/Faq";
+// import SingleAuction from "./components/SingleAuction";
 
 function App() {
   /* blir med path variable i urlen som vi gjorde i postman */
@@ -29,15 +33,24 @@ function App() {
             <Route path="/userlogin" exact element={<UserLogin />} />
             <Route path="/profile" exact element={<Profile />} />
             <Route path="/registeruser" exact element={<RegisterUser />} />
+
             <Route
               path="/singleauction/:id"
               exact
               element={<SingleAuction />}
             />
+
           </Routes>
         </div>
         <div className="footer">
           <Footer />
+        </div>
+        <div className="container">
+          <Routes>
+            <Route path="/contact" exact element={<Contact />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/gdpr" exact element={<Gdpr />} />
+          </Routes>
         </div>
       </BrowserRouter>
     </AuthProvider>

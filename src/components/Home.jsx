@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import FilteringSektion from "./FilteringSektion";
 import { useNavigate } from "react-router-dom";
+
 import AuctionCard from "./AuctionCard";
 
 const Home = ({ auction }) => {
@@ -113,6 +114,8 @@ const Home = ({ auction }) => {
       </div>
     </div>
   );
+
+  <div>{<AuctionCard />}</div>;
 };
 
 export default Home;

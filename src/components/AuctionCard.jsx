@@ -38,11 +38,13 @@ const AuctionCard = ({ auction }) => {
   // }
 
   return (
+
     <div>
       <div>
         <Link to={`/singleauction/${auction.id}`}>
           <h3>{auction.title}</h3>
         </Link>
+
       </div>
     </div>
   );
