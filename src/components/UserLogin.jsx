@@ -97,9 +97,9 @@ const UserLogin = () => {
   };
 
   return (
-    <div>
+    <div className="flex-box">
       <h1>RgaLogo</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="loginUser" onSubmit={handleSubmit}>
         <div className={usernameError ? "error" : ""}>
           <label>Username</label>
           <input
