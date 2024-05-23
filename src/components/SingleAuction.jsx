@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom";
 const SingleAuction = () => {
   const [currentBid, setCurrentBid] = useState(auction.startingBid);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [auction, setAuction] = useState([]);
+  const [auction, setAuction] = useState({});
 
   const { id } = useParams();
 
@@ -46,27 +46,13 @@ const SingleAuction = () => {
   };
 
   useEffect(() => {
-    const fetchAuction = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/auction/${id}`,
-          {
-            method: "GET",
-          }
-        );
-        if (response.ok) {
-          const data = await response.json();
-          console.log("DATA: ", data);
-          setAuction(data);
-        } else {
-          console.error("Error fetching data: ", response.statusText);
-        }
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
+    const getAuction = async () => {
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/auction/get/${id}`
+      );
+      setAuction(res.data);
     };
-
-    fetchAuction();
+    getAuction();
   }, []);
 
   return (
