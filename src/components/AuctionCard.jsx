@@ -38,13 +38,16 @@ const AuctionCard = ({ auction }) => {
   // }
 
   return (
-
     <div>
+      <div>
+        {auctionImages && (
+          <img src={auctionImages.src} alt={`auction ${auction.id}`} />
+        )}
+      </div>
       <div>
         <Link to={`/singleauction/${auction.id}`}>
           <h3>{auction.title}</h3>
         </Link>
-
       </div>
     </div>
   );

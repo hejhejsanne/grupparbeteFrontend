@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import FilteringSektion from "./FilteringSektion";
 import { useNavigate } from "react-router-dom";
-
+import { auctionImages } from "../data/auctionImg";
 import AuctionCard from "./AuctionCard";
 
 const Home = ({ auction }) => {
@@ -68,6 +68,8 @@ const Home = ({ auction }) => {
     fetchAuctionDetails();
   }, []);
 
+  const auctionImages = auctionImages.find((image) => image.id === auction.id);
+
   const handleCardClick = () => {
     setIsSelected(!isSelected);
     if (auction) {
@@ -111,6 +113,11 @@ const Home = ({ auction }) => {
         {auctions.map((auction) => (
           <AuctionCard key={auction.id} auction={auction} />
         ))}
+        <div>
+          {auctionImages && (
+            <img src={auctionImages.src} alt={`auction ${auction.id}`} />
+          )}
+        </div>
       </div>
     </div>
   );
