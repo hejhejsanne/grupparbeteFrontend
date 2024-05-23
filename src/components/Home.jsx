@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./style.css";
-import FilteringSektion from "./FilteringSektion"; // Assuming this component handles filtering logic
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import FilteringSektion from "./FilteringSektion";
+import { useNavigate } from "react-router-dom";
 import AuctionCard from "./AuctionCard";
 
 const Home = ({ auction }) => {
@@ -9,10 +9,9 @@ const Home = ({ auction }) => {
   const [value, setValue] = useState("");
   const [isSelected, setIsSelected] = useState(false);
   const [auctions, setAuctions] = useState([]);
-  const navigate = useNavigate(); // Assuming you have useNavigate imported
+  const navigate = useNavigate();
 
-  // useEffect for API calls
-  /* useEffect(() => {
+  useEffect(() => {
     const fetchFilteredGames = async () => {
       if (value !== "") {
         const url = `${import.meta.env.VITE_API_URL}/auction/search/${value}`;
@@ -20,6 +19,9 @@ const Home = ({ auction }) => {
         try {
           const response = await fetch(url, {
             method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
           });
           if (response.ok) {
             const data = await response.json();
@@ -35,7 +37,11 @@ const Home = ({ auction }) => {
     };
 
     fetchFilteredGames();
-  }, [value]); */
+  }, [value]);
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
 
   useEffect(() => {
     const fetchAuctionDetails = async () => {
@@ -58,118 +64,55 @@ const Home = ({ auction }) => {
       }
     };
 
-    fetchAuctionDetails(); // Call this after games are fetched
+    fetchAuctionDetails();
   }, []);
 
   const handleCardClick = () => {
-    setIsSelected(!isSelected); // Toggle isSelected state
+    setIsSelected(!isSelected);
     if (auction) {
-      navigate(`/singleauction/${auction.id}`); // Navigate on click
+      navigate(`/singleauction/${auction.id}`);
     }
   };
 
   return (
     <div>
-      {auctions.map((auction) => (
-        <AuctionCard key={auction.id} auction={auction} />
-      ))}
+      <div>
+        <select name="filter" onChange={handleChange} defaultValue="">
+          <option value="" disabled>
+            Filter by game console
+          </option>
+          <option value="NES">NES</option>
+          <option value="SNES">SNES</option>
+          <option value="N64">N64</option>
+          <option value="SEGA">SEGA</option>
+          <option value="GAMEBOY">GAMEBOY</option>
+          <option value="PLAYSTATION">PLAYSTATION</option>
+        </select>
+        <div>
+          {games.map((game) => (
+            <div key={game.id}>
+              <p>{game.image}</p>
+              <p>{game.title}</p>
+              {/*<p>{game.endDate}</p>
+               <p>{game.description}</p>
+              <p>{game.recommendedAge}</p>
+              <p>{game.category}</p>
+              <p>{game.startPrice}</p>
+              <p>{game.startDate}</p>
+              <p>{game.tags}</p>
+              { <p>{game.seller}</p> } */}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        {auctions.map((auction) => (
+          <AuctionCard key={auction.id} auction={auction} />
+        ))}
+      </div>
     </div>
   );
 };
 
 export default Home;
-
-// import { useEffect, useState } from "react";
-// import "./style.css";
-// import FilteringSektion from "./FilteringSektion";
-// import { Navigate } from "react-router-dom";
-
-// const Home = () => {
-//   const [games, setGames] = useState([]);
-//   const [value, setValue] = useState("");
-//   const [isSelected, setIsSelected] = useState(false);
-//   const navigate = useNavigate();
-
-//   // useEffect för att göra API anrop
-//   useEffect(() => {
-//     const fetchFilteredGames = async () => {
-//       if (value !== "") {
-//         const url = `${import.meta.env.VITE_API_URL}/auction/search/${value}`;
-//         console.log("Fetching URL: ", url);
-//         try {
-//           const response = await fetch(url, {
-//             method: "GET",
-//             headers: {
-//               "Content-Type": "application/json",
-//             },
-//           });
-//           if (response.ok) {
-//             const data = await response.json();
-//             console.log("DATA: ", data);
-//             setGames(data);
-//           } else {
-//             console.error("Error fetching data: ", response.statusText);
-//           }
-//         } catch (error) {
-//           console.error("Error fetching data: ", error);
-//         }
-//       }
-//     };
-
-//     fetchFilteredGames();
-
-//     const handleCardClick = () => {
-//       setIsSelected(!isSelected); // Toggle isSelected state
-//       // ... navigate if needed ...
-//     };
-
-//     const handleChange = (e) => {
-//       setValue(e.target.value);
-//     };
-
-//   }, [value]);
-
-//   return (
-//     <div>
-//       <div>
-//         <select name="filter" onChange={handleChange} defaultValue="">
-//           <option value="" disabled>
-//             Filter by game console
-//           </option>
-//           <option value="NES">NES</option>
-//           <option value="SNES">SNES</option>
-//           <option value="N64">N64</option>
-//           <option value="SEGA">SEGA</option>
-//           <option value="GAMEBOY">GAMEBOY</option>
-//           <option value="PLAYSTATION">PLAYSTATION</option>
-//         </select>
-//         <div>
-//           {games.map((game) => (
-//             <div key={game.id}>
-//               <p>{game.image}</p>
-//               <p>{game.title}</p>
-//               <p>{game.description}</p>
-//               <p>{game.recommendedAge}</p>
-//               <p>{game.category}</p>
-//               <p>{game.startPrice}</p>
-//               <p>{game.startDate}</p>
-//               <p>{game.endDate}</p>
-//               <p>{game.tags}</p>
-//
-//             </div>
-//           ))}
-//         </div>
-//         <div className="auction-card">
-//           <img src={auction.imageUrl} alt={auction.title} />
-//           <h3>{auction.title}</h3>
-//           <p>{auction.description}</p>
-//           <button onClick={handleCardClick} disabled={isSelected}>
-//             {isSelected ? "Selected" : "View Details"}
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Home;
