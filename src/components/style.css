@@ -19,9 +19,10 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 35px;
   /* height: 100vh; */
   /* background: linear-gradient(to bottom, #5b21b6, #1e40af); */
-  color: #000000;
+  color: #ede8e8;
 }
 
 .buttons-container {
@@ -42,7 +43,7 @@ p {
 button,
 select {
   padding-top: 15 px;
-  background: linear-gradient(to bottom, #5b21b6, #1e40af);
+  background: linear-gradient(to bottom, #752d5c, #8e3d7e);
 }
 
 .button:hover {
@@ -70,7 +71,7 @@ select {
 }
 
 .category {
-  color: #64748b;
+  color: black;
   font-size: 10px;
 }
 
