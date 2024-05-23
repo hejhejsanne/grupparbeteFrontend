@@ -107,7 +107,7 @@ const Home = ({ auction }) => {
         </div>
       </div>
 
-      <div>
+      <div className="auctions-title">
         {auctions.map((auction) => (
           <AuctionCard key={auction.id} auction={auction} />
         ))}
