@@ -40,7 +40,9 @@ const AuctionCard = ({ auction }) => {
   return (
     <div>
       <div>
-        <h3>{auction.title}</h3>
+        <Link to={`/singleauction/${auction.id}`}>
+          <h3>{auction.title}</h3>
+        </Link>
       </div>
     </div>
   );
