@@ -33,22 +33,24 @@ const SingleAuction = () => {
       return;
     }
 
-    fetch(`/api/auctions/${auction.id}/bid`, {
-      method: "POST",
-      body: JSON.stringify({ bid: bidAmount }),
-    })
+    const bidData = {
+      bid: bidAmount,
+    };
+
+    axios.post(`/api/bids`, bidData) 
       .then((response) => {
         if (response.ok) {
-          setCurrentBid(bidAmount);
-          setErrorMessage(null);
+          setErrorMessage(null); 
+          
         } else {
           setErrorMessage("Error placing bid. Please try again.");
+          
         }
       })
       .catch((error) => {
         console.error("Error:", error);
         setErrorMessage("An error occurred. Please try again later.");
-      });
+      })
   };
 
   return (
