@@ -66,66 +66,18 @@ const Home = ({ auction }) => {
     if (auction) {
       navigate(`/singleauction/${auction.id}`); // Navigate on click
     }
-
-    return (
-      <div>
-        <div>
-          <select name="filter" onChange={handleChange} defaultValue="">
-            <option value="" disabled>
-              Filter by game console
-            </option>
-            <option value="NES">NES</option>
-            <option value="SNES">SNES</option>
-            <option value="N64">N64</option>
-            <option value="SEGA">SEGA</option>
-            <option value="GAMEBOY">GAMEBOY</option>
-            <option value="PLAYSTATION">PLAYSTATION</option>
-          </select>
-          <div>
-            {games.map((game) => (
-              <div key={game.id}>
-                <p>{game.title}</p>
-                <p>{game.description}</p>
-                <p>{game.recommendedAge}</p>
-                <p>{game.category}</p>
-                <p>{game.startPrice}</p>
-                <p>{game.startDate}</p>
-                <p>{game.endDate}</p>
-                <p>{game.tags}</p>
-                {/* Conditionally render image if game.image is a URL */}
-                {game.image && <img src={game.image} alt={game.title} />}
-              </div>
-            ))}
-          </div>
-        </div>
-        {auctions.map((auction) => (
-          <AuctionCard key={auction.id} auction={auction} />
-        ))}
-      </div>
-    );
   };
+
+  return (
+    <div>
+      {auctions.map((auction) => (
+        <AuctionCard key={auction.id} auction={auction} />
+      ))}
+    </div>
+  );
 };
 
 export default Home;
-
-/* <div className="auction-card">
-{auctions && ( // Check if auction data exists
-  <>
-    <img src={auction.imageUrl} alt={auction.title} />
-    <h3>{auction.title}</h3>
-    <p>{auction.description}</p>
-    <button onClick={handleCardClick} disabled={isSelected}>
-      {isSelected ? "Selected" : "View Details"}
-    </button>
-  
-    {isSelected && (
-      <div>
-        <p>{auction.title}</p>
-      </div>
-    )}
-  </>
-)}
-</div> */
 
 // import { useEffect, useState } from "react";
 // import "./style.css";
@@ -203,7 +155,7 @@ export default Home;
 //               <p>{game.startDate}</p>
 //               <p>{game.endDate}</p>
 //               <p>{game.tags}</p>
-//               {/* <p>{game.seller}</p> */}
+//
 //             </div>
 //           ))}
 //         </div>
