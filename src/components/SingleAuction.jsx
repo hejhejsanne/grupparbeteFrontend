@@ -5,7 +5,7 @@ import axios from "axios";
 const SingleAuction = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [auction, setAuction] = useState({});
-  const [bidAmount, setBidAmount] = useState(0)
+  const [bidAmount, setBidAmount] = useState([])
 
   const { id } = useParams();
 
@@ -41,6 +41,7 @@ const SingleAuction = () => {
       .then((response) => {
         if (response.ok) {
           setErrorMessage(null); 
+          setBidAmount([]);
           
         } else {
           setErrorMessage("Error placing bid. Please try again.");
