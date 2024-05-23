@@ -29,7 +29,11 @@ function App() {
             <Route path="/userlogin" exact element={<UserLogin />} />
             <Route path="/profile" exact element={<Profile />} />
             <Route path="/registeruser" exact element={<RegisterUser />} />
-            <Route path="/singleauction" exact element={<SingleAuction />} />
+            <Route
+              path="/singleauction/:id"
+              exact
+              element={<SingleAuction />}
+            />
           </Routes>
         </div>
         <div className="footer">
@@ -41,4 +45,3 @@ function App() {
 }
 
 export default App;
-
