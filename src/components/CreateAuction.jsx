@@ -9,6 +9,7 @@ const CreateAuction = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [img, setImg] = useState("");
+  const [tags, setTags] = useState("");
   const navigate = useNavigate();
 
   const [error, setError] = useState("");
@@ -25,7 +26,8 @@ const CreateAuction = () => {
       !startPrice ||
       !startDate ||
       !endDate ||
-      !img
+      !img ||
+      !tags
     ) {
       setError("Please fill out all fields");
       return; // Return early if validation fails
@@ -46,11 +48,12 @@ const CreateAuction = () => {
           startDate,
           endDate,
           img,
+          tags: tags.split(",").map((tag) => tag.trim()),
         }),
       });
 
       if (response.ok) {
-        const {id} = await response.json;
+        const { id } = await response.json;
         // Redirect or handle successful response
         navigate("/auction/${id}");
       } else {
@@ -121,6 +124,15 @@ const CreateAuction = () => {
       <div>
         <label>Image:</label>
         <input type="text" onChange={(e) => setImg(e.target.value)} required />
+      </div>
+      <div>
+        <label>Tags</label>
+        <textarea
+          type="text"
+          value={tags}
+          onChange={(e) => setTags(e.target.value)}
+          required
+        />
       </div>
       {error && <div>{error}</div>}
       <button className="auction-btn" type="submit">
