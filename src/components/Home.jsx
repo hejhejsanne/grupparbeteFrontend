@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import "./style.css";
 import FilteringSektion from "./FilteringSektion";
+import { useNavigate } from "react-router-dom";
+
 import AuctionCard from "./AuctionCard";
 
-const Home = () => {
+const Home = ({ auction }) => {
   const [games, setGames] = useState([]);
   const [value, setValue] = useState("");
+  const [isSelected, setIsSelected] = useState(false);
+  const [auctions, setAuctions] = useState([]);
+  const navigate = useNavigate();
 
-  // useEffect för att göra API anrop
   useEffect(() => {
     const fetchFilteredGames = async () => {
       if (value !== "") {
@@ -36,9 +40,39 @@ const Home = () => {
     fetchFilteredGames();
   }, [value]);
 
-  // en metod för att hantera onChange
   const handleChange = (e) => {
     setValue(e.target.value);
+  };
+
+  useEffect(() => {
+    const fetchAuctionDetails = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/auction/all`,
+          {
+            method: "GET",
+          }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          console.log("DATA: ", data);
+          setAuctions(data);
+        } else {
+          console.error("Error fetching data: ", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchAuctionDetails();
+  }, []);
+
+  const handleCardClick = () => {
+    setIsSelected(!isSelected);
+    if (auction) {
+      navigate(`/singleauction/${auction.id}`);
+    }
   };
 
   return (
@@ -60,17 +94,23 @@ const Home = () => {
             <div key={game.id}>
               <p>{game.image}</p>
               <p>{game.title}</p>
-              <p>{game.description}</p>
+              {/*<p>{game.endDate}</p>
+               <p>{game.description}</p>
               <p>{game.recommendedAge}</p>
               <p>{game.category}</p>
               <p>{game.startPrice}</p>
               <p>{game.startDate}</p>
-              <p>{game.endDate}</p>
               <p>{game.tags}</p>
-              {/* <p>{game.seller}</p> */}
+              { <p>{game.seller}</p> } */}
             </div>
           ))}
         </div>
+      </div>
+
+      <div>
+        {auctions.map((auction) => (
+          <AuctionCard key={auction.id} auction={auction} />
+        ))}
       </div>
     </div>
   );
