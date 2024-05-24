@@ -155,7 +155,12 @@ ul {
 .loginUser input {
   margin-left: 10px;
   justify-content: center;
+  color: #8e3d7e;
 }
 .auctions-title {
   color: white;
+}
+
+input {
+  color: #8e3d7e;
 }
