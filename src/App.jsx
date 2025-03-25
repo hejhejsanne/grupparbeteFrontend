@@ -19,7 +19,8 @@ import Faq from "./components/Faq";
 // import SingleAuction from "./components/SingleAuction";
 
 function App() {
-  /* blir med path variable i urlen som vi gjorde i postman */
+  /* blir med path variable i 
+  urlen som vi gjorde i postman */
   return (
     <AuthProvider>
       <BrowserRouter>
@@ -39,7 +40,6 @@ function App() {
               exact
               element={<SingleAuction />}
             />
-
           </Routes>
         </div>
         <div className="footer">
